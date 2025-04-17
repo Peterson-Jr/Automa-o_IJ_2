@@ -31,36 +31,31 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCodigoBarras = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.stconfigBox = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtData = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.partnumberBox = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.pack = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.button1_gravação = new System.Windows.Forms.Button();
             this.registro_grav = new System.Windows.Forms.Button();
+            this.txtCodigoBarras = new System.Windows.Forms.TextBox();
+            this.stconfigBox = new System.Windows.Forms.TextBox();
+            this.txtData = new System.Windows.Forms.TextBox();
+            this.partnumberBox = new System.Windows.Forms.TextBox();
+            this.pack = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodigoBarras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stconfigBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.partnumberBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,17 +125,6 @@
             this.label2.Text = "GRAVAÇÃO IJ";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // txtCodigoBarras
-            // 
-            this.txtCodigoBarras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtCodigoBarras.Location = new System.Drawing.Point(59, 194);
-            this.txtCodigoBarras.Margin = new System.Windows.Forms.Padding(0);
-            this.txtCodigoBarras.Name = "txtCodigoBarras";
-            this.txtCodigoBarras.Size = new System.Drawing.Size(150, 20);
-            this.txtCodigoBarras.TabIndex = 15;
-            this.txtCodigoBarras.TabStop = false;
-            this.txtCodigoBarras.Click += new System.EventHandler(this.pictureBox2_Click_1);
-            // 
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Red;
@@ -163,17 +147,6 @@
             this.label3.Size = new System.Drawing.Size(133, 20);
             this.label3.TabIndex = 17;
             this.label3.Text = "LEITURA BARCODE";
-            // 
-            // stconfigBox
-            // 
-            this.stconfigBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.stconfigBox.Location = new System.Drawing.Point(59, 255);
-            this.stconfigBox.Margin = new System.Windows.Forms.Padding(0);
-            this.stconfigBox.Name = "stconfigBox";
-            this.stconfigBox.Size = new System.Drawing.Size(150, 20);
-            this.stconfigBox.TabIndex = 15;
-            this.stconfigBox.TabStop = false;
-            this.stconfigBox.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
             // pictureBox8
             // 
@@ -200,17 +173,6 @@
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // txtData
-            // 
-            this.txtData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtData.Location = new System.Drawing.Point(59, 317);
-            this.txtData.Margin = new System.Windows.Forms.Padding(0);
-            this.txtData.Name = "txtData";
-            this.txtData.Size = new System.Drawing.Size(150, 20);
-            this.txtData.TabIndex = 15;
-            this.txtData.TabStop = false;
-            this.txtData.Click += new System.EventHandler(this.pictureBox2_Click_1);
-            // 
             // pictureBox10
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Red;
@@ -234,17 +196,6 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "DATA";
             // 
-            // partnumberBox
-            // 
-            this.partnumberBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.partnumberBox.Location = new System.Drawing.Point(511, 194);
-            this.partnumberBox.Margin = new System.Windows.Forms.Padding(0);
-            this.partnumberBox.Name = "partnumberBox";
-            this.partnumberBox.Size = new System.Drawing.Size(150, 20);
-            this.partnumberBox.TabIndex = 15;
-            this.partnumberBox.TabStop = false;
-            this.partnumberBox.Click += new System.EventHandler(this.pictureBox2_Click_1);
-            // 
             // pictureBox12
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Red;
@@ -267,17 +218,6 @@
             this.label9.Size = new System.Drawing.Size(66, 20);
             this.label9.TabIndex = 17;
             this.label9.Text = "MODELO";
-            // 
-            // pack
-            // 
-            this.pack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pack.Location = new System.Drawing.Point(511, 255);
-            this.pack.Margin = new System.Windows.Forms.Padding(0);
-            this.pack.Name = "pack";
-            this.pack.Size = new System.Drawing.Size(150, 20);
-            this.pack.TabIndex = 15;
-            this.pack.TabStop = false;
-            this.pack.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
             // pictureBox14
             // 
@@ -327,12 +267,65 @@
             this.registro_grav.Text = "REGISTRO GRAVAÇÃO";
             this.registro_grav.UseVisualStyleBackColor = true;
             // 
+            // txtCodigoBarras
+            // 
+            this.txtCodigoBarras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtCodigoBarras.Location = new System.Drawing.Point(59, 194);
+            this.txtCodigoBarras.Name = "txtCodigoBarras";
+            this.txtCodigoBarras.Size = new System.Drawing.Size(150, 20);
+            this.txtCodigoBarras.TabIndex = 20;
+            this.txtCodigoBarras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCodigoBarras.TextChanged += new System.EventHandler(this.txtCodigoBarras_TextChanged);
+            // 
+            // stconfigBox
+            // 
+            this.stconfigBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.stconfigBox.Location = new System.Drawing.Point(59, 255);
+            this.stconfigBox.Multiline = true;
+            this.stconfigBox.Name = "stconfigBox";
+            this.stconfigBox.Size = new System.Drawing.Size(150, 20);
+            this.stconfigBox.TabIndex = 21;
+            this.stconfigBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtData
+            // 
+            this.txtData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtData.Location = new System.Drawing.Point(59, 317);
+            this.txtData.Name = "txtData";
+            this.txtData.Size = new System.Drawing.Size(150, 20);
+            this.txtData.TabIndex = 22;
+            this.txtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // partnumberBox
+            // 
+            this.partnumberBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.partnumberBox.Location = new System.Drawing.Point(511, 194);
+            this.partnumberBox.Name = "partnumberBox";
+            this.partnumberBox.Size = new System.Drawing.Size(150, 20);
+            this.partnumberBox.TabIndex = 23;
+            this.partnumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pack
+            // 
+            this.pack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pack.Location = new System.Drawing.Point(511, 255);
+            this.pack.Multiline = true;
+            this.pack.Name = "pack";
+            this.pack.Size = new System.Drawing.Size(150, 20);
+            this.pack.TabIndex = 24;
+            this.pack.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 445);
+            this.Controls.Add(this.pack);
+            this.Controls.Add(this.partnumberBox);
+            this.Controls.Add(this.txtData);
+            this.Controls.Add(this.stconfigBox);
+            this.Controls.Add(this.txtCodigoBarras);
             this.Controls.Add(this.button1_gravação);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -342,13 +335,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox14);
-            this.Controls.Add(this.txtData);
             this.Controls.Add(this.pictureBox12);
             this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pack);
-            this.Controls.Add(this.stconfigBox);
-            this.Controls.Add(this.partnumberBox);
-            this.Controls.Add(this.txtCodigoBarras);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.registro_grav);
             this.Controls.Add(this.pictureBox5);
@@ -363,15 +351,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodigoBarras)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stconfigBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.partnumberBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -386,23 +369,23 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox txtCodigoBarras;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox stconfigBox;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox txtData;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox partnumberBox;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox pack;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1_gravação;
         private System.Windows.Forms.Button registro_grav;
+        private System.Windows.Forms.TextBox txtCodigoBarras;
+        private System.Windows.Forms.TextBox stconfigBox;
+        private System.Windows.Forms.TextBox txtData;
+        private System.Windows.Forms.TextBox partnumberBox;
+        private System.Windows.Forms.TextBox pack;
     }
 }
 
