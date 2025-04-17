@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace Projeto_IJ
 {
@@ -18,31 +20,41 @@ namespace Projeto_IJ
             txtData.ReadOnly = true;
             partnumberBox.ReadOnly = true;
 
-            CarregarDadosManual();
+            CarregarDadosDoExcel();
         }
 
-        private void CarregarDadosManual()
+        private void CarregarDadosDoExcel()
         {
-            // Preencha os dados manualmente por enquanto
-            dadosPorCodigo = new Dictionary<string, DadosDoProduto>
+            string caminhoExcel = @"C:\Users\peterson.junior\Desktop\layout_dados.xlsx";
+
+            dadosPorCodigo = new Dictionary<string, DadosDoProduto>();
+
+            if (!File.Exists(caminhoExcel))
             {
+                MessageBox.Show("Arquivo de dados não encontrado: " + caminhoExcel);
+                return;
+            }
+
+            using (var workbook = new XLWorkbook(caminhoExcel))
+            {
+                var planilha = workbook.Worksheet(1);
+                var tabela = planilha.RangeUsed();
+
+                foreach (var linha in tabela.RowsUsed().Skip(1))
                 {
-                    "ABC123", new DadosDoProduto
+                    string codigo = linha.Cell(1).GetValue<string>().Trim();
+
+                    var dados = new DadosDoProduto
                     {
-                        Modelo = "Linha A",
-                        CaminhoConfiguracao = @"C:\configs\a.stconfig",
-                        CaminhoAtualizacao = @"C:\firmware\fwA.pack"
-                    }
-                },
-                {
-                    "XYZ789", new DadosDoProduto
-                    {
-                        Modelo = "Linha B",
-                        CaminhoConfiguracao = @"C:\configs\b.stconfig",
-                        CaminhoAtualizacao = @"C:\firmware\fwB.pack"
-                    }
+                        Modelo = linha.Cell(3).GetValue<string>(),
+                        CaminhoConfiguracao = linha.Cell(4).GetValue<string>(),
+                        CaminhoAtualizacao = linha.Cell(5).GetValue<string>()
+                    };
+
+                    if (!dadosPorCodigo.ContainsKey(codigo))
+                        dadosPorCodigo.Add(codigo, dados);
                 }
-            };
+            }
         }
 
         private void txtCodigoBarras_KeyDown(object sender, KeyEventArgs e)
@@ -78,11 +90,25 @@ namespace Projeto_IJ
 
             try
             {
+                // Atualiza stconfigBox
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
-                    MessageBox.Show("Rodando configuração: " + Path.GetFileName(dadosSelecionados.CaminhoConfiguracao));
+                {
+                    stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
+                }
+                else
+                {
+                    stconfigBox.Text = "Arquivo de configuração não encontrado.";
+                }
 
+                // Atualiza pack
                 if (File.Exists(dadosSelecionados.CaminhoAtualizacao))
-                    MessageBox.Show("Rodando atualização: " + Path.GetFileName(dadosSelecionados.CaminhoAtualizacao));
+                {
+                    pack.Text = $"Arquivo de atualização carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
+                }
+                else
+                {
+                    pack.Text = "Arquivo de atualização não encontrado.";
+                }
 
                 MessageBox.Show("Gravação concluída!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -92,18 +118,23 @@ namespace Projeto_IJ
             }
         }
 
-        // Resto dos métodos intactos
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void pictureBox3_Click(object sender, EventArgs e) { }
-        private void pictureBox2_Click(object sender, EventArgs e) { }
-        private void textBox1_TextChanged_1(object sender, EventArgs e) { }
+        // Métodos vazios para evitar erro no Designer
         private void label1_Click(object sender, EventArgs e) { }
-        private void pictureBox4_Click(object sender, EventArgs e) { }
-        private void button2_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
-        private void pictureBox2_Click_1(object sender, EventArgs e) { }
         private void label5_Click(object sender, EventArgs e) { }
+        private void pictureBox2_Click(object sender, EventArgs e) { }
+        private void pictureBox2_Click_1(object sender, EventArgs e) { }
+        private void pictureBox3_Click(object sender, EventArgs e) { }
+        private void pictureBox4_Click(object sender, EventArgs e) { }
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
+        private void textBox1_TextChanged_1(object sender, EventArgs e) { }
+        private void button2_Click(object sender, EventArgs e) { }
+
+        private void pack_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class DadosDoProduto

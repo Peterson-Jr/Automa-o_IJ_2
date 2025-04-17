@@ -2,14 +2,10 @@
 {
     partial class Form4
     {
-        /// <summary>
         /// Variável de designer necessária.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
         /// Limpar os recursos que estão sendo usados.
-        /// </summary>
         /// <param name="disposing">true se for necessário descartar os recursos gerenciados; caso contrário, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -104,7 +100,6 @@
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "ACESSO ADM";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox4
             // 
@@ -115,7 +110,6 @@
             this.pictureBox4.Size = new System.Drawing.Size(190, 62);
             this.pictureBox4.TabIndex = 10;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -176,7 +170,6 @@
             this.label2.Size = new System.Drawing.Size(222, 43);
             this.label2.TabIndex = 13;
             this.label2.Text = "GRAVAÇÃO IJ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox2
             // 
@@ -370,14 +363,17 @@
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(150, 20);
             this.txtCodigoBarras.TabIndex = 19;
+            this.txtCodigoBarras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // stconfigBox
             // 
             this.stconfigBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.stconfigBox.Location = new System.Drawing.Point(59, 255);
+            this.stconfigBox.Multiline = true;
             this.stconfigBox.Name = "stconfigBox";
             this.stconfigBox.Size = new System.Drawing.Size(150, 20);
             this.stconfigBox.TabIndex = 19;
+            this.stconfigBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtData
             // 
@@ -386,6 +382,7 @@
             this.txtData.Name = "txtData";
             this.txtData.Size = new System.Drawing.Size(150, 20);
             this.txtData.TabIndex = 19;
+            this.txtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // partnumberBox
             // 
@@ -394,14 +391,18 @@
             this.partnumberBox.Name = "partnumberBox";
             this.partnumberBox.Size = new System.Drawing.Size(150, 20);
             this.partnumberBox.TabIndex = 19;
+            this.partnumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pack
             // 
             this.pack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.pack.Location = new System.Drawing.Point(511, 255);
+            this.pack.Multiline = true;
             this.pack.Name = "pack";
             this.pack.Size = new System.Drawing.Size(150, 20);
             this.pack.TabIndex = 19;
+            this.pack.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pack.TextChanged += new System.EventHandler(this.pack_TextChanged);
             // 
             // Form4
             // 

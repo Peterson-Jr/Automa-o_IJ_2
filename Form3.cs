@@ -24,7 +24,7 @@ namespace Projeto_IJ
         {
             this.Close(); // Fecha o Form3
             nt = new Thread(novoForm5); // Cria uma nova thread para abrir o Form5
-            nt.SetApartmentState(ApartmentState.STA); // Define o estado de apartamento
+            nt.SetApartmentState(ApartmentState.STA); // Define o estado do "apartamento"
             nt.Start(); // Inicia a thread
         }
 

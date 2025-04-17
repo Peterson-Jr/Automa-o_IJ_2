@@ -2,14 +2,8 @@
 {
     partial class Form8
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -56,7 +50,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(165, 262);
+            this.label4.Location = new System.Drawing.Point(110, 170);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 20);
@@ -69,7 +63,7 @@
             this.label3.BackColor = System.Drawing.Color.Red;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(115, 236);
+            this.label3.Location = new System.Drawing.Point(55, 150);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(178, 23);
@@ -80,20 +74,20 @@
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Red;
-            this.pictureBox6.Location = new System.Drawing.Point(88, 231);
+            this.pictureBox6.Location = new System.Drawing.Point(59, 150);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(225, 31);
+            this.pictureBox6.Size = new System.Drawing.Size(150, 20);
             this.pictureBox6.TabIndex = 62;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pictureBox2.Location = new System.Drawing.Point(88, 262);
+            this.pictureBox2.Location = new System.Drawing.Point(59, 170);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(225, 31);
+            this.pictureBox2.Size = new System.Drawing.Size(150, 20);
             this.pictureBox2.TabIndex = 58;
             this.pictureBox2.TabStop = false;
             // 
@@ -101,8 +95,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(303, 122);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(202, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(378, 43);
             this.label2.TabIndex = 57;
@@ -112,11 +105,10 @@
             // 
             this.registro_grav.Cursor = System.Windows.Forms.Cursors.Hand;
             this.registro_grav.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.registro_grav.Location = new System.Drawing.Point(843, 18);
-            this.registro_grav.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.registro_grav.Location = new System.Drawing.Point(562, 12);
             this.registro_grav.Name = "registro_grav";
             this.registro_grav.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.registro_grav.Size = new System.Drawing.Size(213, 40);
+            this.registro_grav.Size = new System.Drawing.Size(142, 26);
             this.registro_grav.TabIndex = 56;
             this.registro_grav.Text = "REGISTRO GRAVAÇÃO";
             this.registro_grav.UseVisualStyleBackColor = true;
@@ -125,11 +117,10 @@
             // 
             this.cadastrar_user.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cadastrar_user.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cadastrar_user.Location = new System.Drawing.Point(584, 18);
-            this.cadastrar_user.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cadastrar_user.Location = new System.Drawing.Point(389, 12);
             this.cadastrar_user.Name = "cadastrar_user";
             this.cadastrar_user.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cadastrar_user.Size = new System.Drawing.Size(213, 40);
+            this.cadastrar_user.Size = new System.Drawing.Size(142, 26);
             this.cadastrar_user.TabIndex = 55;
             this.cadastrar_user.Text = "CADASTRAR IJ";
             this.cadastrar_user.UseVisualStyleBackColor = true;
@@ -139,11 +130,10 @@
             this.cadastrar_Ij.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cadastrar_Ij.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cadastrar_Ij.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cadastrar_Ij.Location = new System.Drawing.Point(315, 18);
-            this.cadastrar_Ij.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cadastrar_Ij.Location = new System.Drawing.Point(210, 12);
             this.cadastrar_Ij.Name = "cadastrar_Ij";
             this.cadastrar_Ij.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cadastrar_Ij.Size = new System.Drawing.Size(213, 40);
+            this.cadastrar_Ij.Size = new System.Drawing.Size(142, 26);
             this.cadastrar_Ij.TabIndex = 54;
             this.cadastrar_Ij.Text = "GRAVAR IJ";
             this.cadastrar_Ij.UseVisualStyleBackColor = true;
@@ -156,7 +146,7 @@
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(284, 95);
+            this.pictureBox5.Size = new System.Drawing.Size(189, 62);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox5.TabIndex = 53;
             this.pictureBox5.TabStop = false;
@@ -164,20 +154,19 @@
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox4.Location = new System.Drawing.Point(-2, 0);
+            this.pictureBox4.Location = new System.Drawing.Point(-1, 0);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(285, 95);
+            this.pictureBox4.Size = new System.Drawing.Size(190, 62);
             this.pictureBox4.TabIndex = 52;
             this.pictureBox4.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 645);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 419);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 20);
+            this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 51;
             this.label1.Text = "ACESSO ADM";
             // 
@@ -185,10 +174,9 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.White;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1126, 612);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Location = new System.Drawing.Point(751, 398);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(56, 54);
+            this.pictureBox3.Size = new System.Drawing.Size(37, 35);
             this.pictureBox3.TabIndex = 50;
             this.pictureBox3.TabStop = false;
             // 
@@ -197,18 +185,17 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Red;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1200, 95);
+            this.pictureBox1.Size = new System.Drawing.Size(800, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 49;
             this.pictureBox1.TabStop = false;
             // 
             // Form8
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 685);
+            this.ClientSize = new System.Drawing.Size(800, 445);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox6);
@@ -222,7 +209,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form8";
             this.Text = "Form8";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
