@@ -81,5 +81,10 @@ namespace Projeto_IJ
         {
 
         }
+
+        private void txtCodigoBarras_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
