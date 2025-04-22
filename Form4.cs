@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 using ClosedXML.Excel;
@@ -19,6 +20,9 @@ namespace Projeto_IJ
             txtCodigoBarras.KeyDown += new KeyEventHandler(txtCodigoBarras_KeyDown);
             txtData.ReadOnly = true;
             partnumberBox.ReadOnly = true;
+
+            // Preencher o ComboBox com as portas COM disponíveis
+            PreencherPortasCom();
 
             CarregarDadosDoExcel();
         }
@@ -57,6 +61,23 @@ namespace Projeto_IJ
             }
         }
 
+        private void PreencherPortasCom()
+        {
+            // Preenche o ComboBox com as portas COM disponíveis
+            string[] portasCom = SerialPort.GetPortNames();
+            comboBoxPortasCom.Items.Clear();
+
+            foreach (var porta in portasCom)
+            {
+                comboBoxPortasCom.Items.Add(porta);
+            }
+
+            if (comboBoxPortasCom.Items.Count > 0)
+            {
+                comboBoxPortasCom.SelectedIndex = 0; // Seleciona a primeira porta por padrão
+            }
+        }
+
         private void txtCodigoBarras_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -90,10 +111,21 @@ namespace Projeto_IJ
 
             try
             {
+                // Verificar se o ComboBox possui uma porta COM selecionada
+                if (comboBoxPortasCom.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, selecione uma porta COM.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string portaComSelecionada = comboBoxPortasCom.SelectedItem.ToString();
+
                 // Atualiza stconfigBox
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
                 {
                     stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
+                    // Passar o arquivo de configuração para o controlador via COM
+                    PassarConfiguracaoParaControlador(dadosSelecionados.CaminhoConfiguracao, portaComSelecionada);
                 }
                 else
                 {
@@ -104,6 +136,8 @@ namespace Projeto_IJ
                 if (File.Exists(dadosSelecionados.CaminhoAtualizacao))
                 {
                     pack.Text = $"Arquivo de atualização carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
+                    // Passar o arquivo .pack para o controlador via COM
+                    PassarPackParaControlador(dadosSelecionados.CaminhoAtualizacao, portaComSelecionada);
                 }
                 else
                 {
@@ -115,6 +149,34 @@ namespace Projeto_IJ
             catch (Exception ex)
             {
                 MessageBox.Show("Erro na gravação: " + ex.Message);
+            }
+        }
+
+        private void PassarConfiguracaoParaControlador(string caminhoConfiguracao, string portaCom)
+        {
+            // Lógica para passar o arquivo de configuração para o controlador via porta COM
+            string comando = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"Serial,{portaCom},1152008N2,248\" --verify --verify-delay 20";
+            ExecutarComandoNoControlador(comando);
+        }
+
+        private void PassarPackParaControlador(string caminhoPack, string portaCom)
+        {
+            // Lógica para passar o arquivo .pack para o controlador via porta COM
+            string comando = $"app download --src \"{caminhoPack}\" --connection Serial,{portaCom},192008N2,1";
+            ExecutarComandoNoControlador(comando);
+        }
+
+        private void ExecutarComandoNoControlador(string comando)
+        {
+            // Aqui você pode executar o comando no controlador, como usar System.Diagnostics.Process
+            // para chamar o programa que executa os comandos, por exemplo, usando o CMD
+            try
+            {
+                System.Diagnostics.Process.Start("cmd.exe", "/C " + comando);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao executar comando: " + ex.Message);
             }
         }
 
@@ -131,10 +193,7 @@ namespace Projeto_IJ
         private void textBox1_TextChanged_1(object sender, EventArgs e) { }
         private void button2_Click(object sender, EventArgs e) { }
 
-        private void pack_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void pack_TextChanged(object sender, EventArgs e) { }
     }
 
     public class DadosDoProduto

@@ -55,6 +55,7 @@
             this.txtData = new System.Windows.Forms.TextBox();
             this.partnumberBox = new System.Windows.Forms.TextBox();
             this.pack = new System.Windows.Forms.TextBox();
+            this.comboBoxPortasCom = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -404,12 +405,21 @@
             this.pack.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.pack.TextChanged += new System.EventHandler(this.pack_TextChanged);
             // 
+            // comboBoxPortasCom
+            // 
+            this.comboBoxPortasCom.FormattingEnabled = true;
+            this.comboBoxPortasCom.Location = new System.Drawing.Point(638, 88);
+            this.comboBoxPortasCom.Name = "comboBoxPortasCom";
+            this.comboBoxPortasCom.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxPortasCom.TabIndex = 20;
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 445);
+            this.Controls.Add(this.comboBoxPortasCom);
             this.Controls.Add(this.pack);
             this.Controls.Add(this.partnumberBox);
             this.Controls.Add(this.txtData);
@@ -493,6 +503,7 @@
         private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.TextBox partnumberBox;
         private System.Windows.Forms.TextBox pack;
+        private System.Windows.Forms.ComboBox comboBoxPortasCom;
     }
 }
 
