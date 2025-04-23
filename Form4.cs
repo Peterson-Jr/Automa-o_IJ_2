@@ -29,7 +29,7 @@ namespace Projeto_IJ
 
         private void CarregarDadosDoExcel()
         {
-            string caminhoExcel = @"C:\Users\peterson.junior\Desktop\layout_dados.xlsx";
+            string caminhoExcel = @"C:\Users\peter\OneDrive\Área de Trabalho\layout_dados.xlsx";
 
             dadosPorCodigo = new Dictionary<string, DadosDoProduto>();
 
