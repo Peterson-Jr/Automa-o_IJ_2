@@ -28,7 +28,6 @@ namespace Projeto_IJ
         private void CarregarDadosDoExcel()
         {
             string caminhoExcel = @"C:\Users\peterson.junior\Desktop\layout_dados.xlsx";
-
             dadosPorCodigo = new Dictionary<string, DadosDoProduto>();
 
             if (!File.Exists(caminhoExcel))
@@ -45,7 +44,6 @@ namespace Projeto_IJ
                 foreach (var linha in tabela.RowsUsed().Skip(1))
                 {
                     string codigo = linha.Cell(1).GetValue<string>().Trim();
-
                     var dados = new DadosDoProduto
                     {
                         Modelo = linha.Cell(3).GetValue<string>(),
@@ -65,14 +63,10 @@ namespace Projeto_IJ
             comboBoxPortasCom.Items.Clear();
 
             foreach (var porta in portasCom)
-            {
                 comboBoxPortasCom.Items.Add(porta);
-            }
 
             if (comboBoxPortasCom.Items.Count > 0)
-            {
                 comboBoxPortasCom.SelectedIndex = 0;
-            }
         }
 
         private void txtCodigoBarras_KeyDown(object sender, KeyEventArgs e)
@@ -106,16 +100,16 @@ namespace Projeto_IJ
                 return;
             }
 
+            if (comboBoxPortasCom.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, selecione uma porta COM.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string portaComSelecionada = comboBoxPortasCom.SelectedItem.ToString();
+
             try
             {
-                if (comboBoxPortasCom.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, selecione uma porta COM.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                string portaComSelecionada = comboBoxPortasCom.SelectedItem.ToString();
-
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
                 {
                     stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
@@ -135,8 +129,6 @@ namespace Projeto_IJ
                 {
                     pack.Text = "Arquivo de atualização não encontrado.";
                 }
-
-                IniciarSparkly();
 
                 MessageBox.Show("Gravação concluída!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -160,31 +152,31 @@ namespace Projeto_IJ
 
         private void ExecutarComandoNoControlador(string comando)
         {
+            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+
             try
             {
-                // Aqui não abrimos o Sparkly, só usamos como interface de execução, se desejado
-                System.Diagnostics.Process.Start("cmd.exe", "/C " + comando);
+                if (!File.Exists(sparklyPath))
+                {
+                    MessageBox.Show("Sparkly.exe não encontrado no caminho informado:\n" + sparklyPath, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var processo = new System.Diagnostics.Process();
+                processo.StartInfo.FileName = sparklyPath;
+                processo.StartInfo.Arguments = "/C " + comando;
+                processo.StartInfo.UseShellExecute = true;
+                processo.Start();
+
+                MessageBox.Show("Sparkly iniciado com sucesso.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao executar comando: " + ex.Message);
+                MessageBox.Show("Erro ao iniciar o Sparkly:\n" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void IniciarSparkly()
-        {
-            try
-            {
-                string caminhoSparkly = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
-                System.Diagnostics.Process.Start(caminhoSparkly);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao iniciar o Sparkly: " + ex.Message);
-            }
-        }
-
-        // Métodos vazios do Designer
+        // Métodos vazios para o Designer
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
