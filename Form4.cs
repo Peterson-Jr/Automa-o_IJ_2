@@ -21,15 +21,13 @@ namespace Projeto_IJ
             txtData.ReadOnly = true;
             partnumberBox.ReadOnly = true;
 
-            // Preencher o ComboBox com as portas COM disponíveis
             PreencherPortasCom();
-
             CarregarDadosDoExcel();
         }
 
         private void CarregarDadosDoExcel()
         {
-            string caminhoExcel = @"C:\Users\peter\OneDrive\Área de Trabalho\layout_dados.xlsx";
+            string caminhoExcel = @"C:\Users\peterson.junior\Desktop\layout_dados.xlsx";
 
             dadosPorCodigo = new Dictionary<string, DadosDoProduto>();
 
@@ -63,7 +61,6 @@ namespace Projeto_IJ
 
         private void PreencherPortasCom()
         {
-            // Preenche o ComboBox com as portas COM disponíveis
             string[] portasCom = SerialPort.GetPortNames();
             comboBoxPortasCom.Items.Clear();
 
@@ -74,7 +71,7 @@ namespace Projeto_IJ
 
             if (comboBoxPortasCom.Items.Count > 0)
             {
-                comboBoxPortasCom.SelectedIndex = 0; // Seleciona a primeira porta por padrão
+                comboBoxPortasCom.SelectedIndex = 0;
             }
         }
 
@@ -111,7 +108,6 @@ namespace Projeto_IJ
 
             try
             {
-                // Verificar se o ComboBox possui uma porta COM selecionada
                 if (comboBoxPortasCom.SelectedItem == null)
                 {
                     MessageBox.Show("Por favor, selecione uma porta COM.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -120,11 +116,9 @@ namespace Projeto_IJ
 
                 string portaComSelecionada = comboBoxPortasCom.SelectedItem.ToString();
 
-                // Atualiza stconfigBox
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
                 {
                     stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
-                    // Passar o arquivo de configuração para o controlador via COM
                     PassarConfiguracaoParaControlador(dadosSelecionados.CaminhoConfiguracao, portaComSelecionada);
                 }
                 else
@@ -132,17 +126,17 @@ namespace Projeto_IJ
                     stconfigBox.Text = "Arquivo de configuração não encontrado.";
                 }
 
-                // Atualiza pack
                 if (File.Exists(dadosSelecionados.CaminhoAtualizacao))
                 {
                     pack.Text = $"Arquivo de atualização carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
-                    // Passar o arquivo .pack para o controlador via COM
                     PassarPackParaControlador(dadosSelecionados.CaminhoAtualizacao, portaComSelecionada);
                 }
                 else
                 {
                     pack.Text = "Arquivo de atualização não encontrado.";
                 }
+
+                IniciarSparkly();
 
                 MessageBox.Show("Gravação concluída!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -154,24 +148,21 @@ namespace Projeto_IJ
 
         private void PassarConfiguracaoParaControlador(string caminhoConfiguracao, string portaCom)
         {
-            // Lógica para passar o arquivo de configuração para o controlador via porta COM
-            string comando = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"Serial,{portaCom},1152008N2,248\" --verify --verify-delay 20";
+            string comando = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"Serial,{portaCom},192008N2,1\" --verify --verify-delay 20";
             ExecutarComandoNoControlador(comando);
         }
 
         private void PassarPackParaControlador(string caminhoPack, string portaCom)
         {
-            // Lógica para passar o arquivo .pack para o controlador via porta COM
             string comando = $"app download --src \"{caminhoPack}\" --connection Serial,{portaCom},192008N2,1";
             ExecutarComandoNoControlador(comando);
         }
 
         private void ExecutarComandoNoControlador(string comando)
         {
-            // Aqui você pode executar o comando no controlador, como usar System.Diagnostics.Process
-            // para chamar o programa que executa os comandos, por exemplo, usando o CMD
             try
             {
+                // Aqui não abrimos o Sparkly, só usamos como interface de execução, se desejado
                 System.Diagnostics.Process.Start("cmd.exe", "/C " + comando);
             }
             catch (Exception ex)
@@ -180,7 +171,20 @@ namespace Projeto_IJ
             }
         }
 
-        // Métodos vazios para evitar erro no Designer
+        private void IniciarSparkly()
+        {
+            try
+            {
+                string caminhoSparkly = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+                System.Diagnostics.Process.Start(caminhoSparkly);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao iniciar o Sparkly: " + ex.Message);
+            }
+        }
+
+        // Métodos vazios do Designer
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
@@ -192,7 +196,6 @@ namespace Projeto_IJ
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void textBox1_TextChanged_1(object sender, EventArgs e) { }
         private void button2_Click(object sender, EventArgs e) { }
-
         private void pack_TextChanged(object sender, EventArgs e) { }
     }
 
