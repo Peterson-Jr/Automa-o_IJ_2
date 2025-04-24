@@ -255,6 +255,7 @@
             this.button1_gravação.TabIndex = 18;
             this.button1_gravação.Text = "INICIAR GRAVAÇÃO";
             this.button1_gravação.UseVisualStyleBackColor = false;
+            this.button1_gravação.Click += new System.EventHandler(this.button1_Click);
             // 
             // registro_grav
             // 

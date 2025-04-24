@@ -288,3 +288,46 @@ C:\Users\peterson.junior\Desktop\New folder (2)\obj\Debug\Projeto_IJ.csproj.Core
 C:\Users\peterson.junior\Desktop\New folder (2)\obj\Debug\Projeto_IJ.csproj.Up2Date
 C:\Users\peterson.junior\Desktop\New folder (2)\obj\Debug\Projeto_IJ.exe
 C:\Users\peterson.junior\Desktop\New folder (2)\obj\Debug\Projeto_IJ.pdb
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\Projeto_IJ.exe.config
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\Projeto_IJ.exe
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\Projeto_IJ.pdb
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ClosedXML.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ClosedXML.Parser.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ExcelNumberFormat.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\RBush.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\SixLabors.Fonts.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Buffers.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Memory.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ClosedXML.pdb
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ClosedXML.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ClosedXML.Parser.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\ExcelNumberFormat.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\RBush.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\SixLabors.Fonts.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Buffers.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Memory.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\peter\Downloads\Nova pasta\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.csproj.AssemblyReference.cache
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form2.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form1.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form6.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form5.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form4.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form3.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form7.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Form8.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.Properties.Resources.resources
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.csproj.GenerateResource.cache
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.csproj.CoreCompileInputs.cache
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.csproj.Up2Date
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.exe
+C:\Users\peter\Downloads\Nova pasta\obj\Debug\Projeto_IJ.pdb

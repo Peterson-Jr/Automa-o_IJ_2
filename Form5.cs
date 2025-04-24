@@ -16,24 +16,26 @@ namespace Projeto_IJ
         public Form5()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Form5_Load); // Correção: associa corretamente o evento de Load
 
+            // Associar o evento de carregamento do formulário corretamente
+            this.Load += new System.EventHandler(this.Form5_Load);
+
+            // Lógica do código de barras e interação com os campos de texto
             txtCodigoBarras.KeyDown += new KeyEventHandler(txtCodigoBarras_KeyDown);
             txtData.ReadOnly = true;
             partnumberBox.ReadOnly = true;
         }
 
-        // Método chamado ao carregar o formulário
         private void Form5_Load(object sender, EventArgs e)
         {
+            // Preencher as portas COM e carregar os dados do Excel
             PreencherPortasCom();
             CarregarDadosDoExcel();
         }
 
         private void CarregarDadosDoExcel()
         {
-            string caminhoExcel = @"C:\Users\peterson.junior\Desktop\layout_dados.xlsx";
-
+            string caminhoExcel = @"C:\Users\peter\OneDrive\Área de Trabalho\layout_dados.xlsx";
             dadosPorCodigo = new Dictionary<string, DadosDoProduto>();
 
             if (!File.Exists(caminhoExcel))
@@ -50,7 +52,6 @@ namespace Projeto_IJ
                 foreach (var linha in tabela.RowsUsed().Skip(1))
                 {
                     string codigo = linha.Cell(1).GetValue<string>().Trim();
-
                     var dados = new DadosDoProduto
                     {
                         Modelo = linha.Cell(3).GetValue<string>(),
@@ -173,7 +174,7 @@ namespace Projeto_IJ
             }
         }
 
-        // Métodos vazios do Designer
+        // Métodos vazios do Designer (sem alterações no layout, somente as assinaturas mantidas)
         private void pictureBox2_Click(object sender, EventArgs e) { }
         private void pictureBox3_Click(object sender, EventArgs e) { }
         private void pictureBox4_Click(object sender, EventArgs e) { }
