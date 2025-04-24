@@ -89,8 +89,7 @@
             this.label1.Size = new System.Drawing.Size(83, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "ACESSO USER";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
+            this.label1.Click += new System.EventHandler(this.label1_Click);            // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.Control;
