@@ -374,3 +374,46 @@ C:\Users\peterson.junior\source\repos\Automa-o_IJ_2\New folder\obj\Debug\Projeto
 C:\Users\peterson.junior\source\repos\Automa-o_IJ_2\New folder\obj\Debug\Projeto_IJ.csproj.Up2Date
 C:\Users\peterson.junior\source\repos\Automa-o_IJ_2\New folder\obj\Debug\Projeto_IJ.exe
 C:\Users\peterson.junior\source\repos\Automa-o_IJ_2\New folder\obj\Debug\Projeto_IJ.pdb
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\Projeto_IJ.exe.config
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\Projeto_IJ.exe
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\Projeto_IJ.pdb
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ClosedXML.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ClosedXML.Parser.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ExcelNumberFormat.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\RBush.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\SixLabors.Fonts.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Buffers.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Memory.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ClosedXML.pdb
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ClosedXML.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ClosedXML.Parser.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\ExcelNumberFormat.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\RBush.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\SixLabors.Fonts.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Buffers.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Memory.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\peterson.junior\Desktop\IJF\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.csproj.AssemblyReference.cache
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form2.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form1.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form6.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form5.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form4.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form3.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form7.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Form8.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.Properties.Resources.resources
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.csproj.GenerateResource.cache
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.csproj.CoreCompileInputs.cache
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.csproj.Up2Date
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.exe
+C:\Users\peterson.junior\Desktop\IJF\obj\Debug\Projeto_IJ.pdb

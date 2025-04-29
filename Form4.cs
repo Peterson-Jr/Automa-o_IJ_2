@@ -5,6 +5,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 using ClosedXML.Excel;
+using System.Diagnostics;
 
 namespace Projeto_IJ
 {
@@ -110,6 +111,12 @@ namespace Projeto_IJ
 
             try
             {
+                if (!ExecutarSparkly())
+                {
+                    MessageBox.Show("Erro ao iniciar o Sparkly. Operação cancelada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
                 {
                     stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
@@ -138,6 +145,32 @@ namespace Projeto_IJ
             }
         }
 
+        private bool ExecutarSparkly()
+        {
+            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+
+            try
+            {
+                if (!File.Exists(sparklyPath))
+                {
+                    return false;
+                }
+
+                var processo = new Process();
+                processo.StartInfo.FileName = sparklyPath;
+                processo.StartInfo.UseShellExecute = true;
+                processo.Start();
+
+                // Aguarda alguns segundos para garantir inicialização
+                processo.WaitForInputIdle(3000);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void PassarConfiguracaoParaControlador(string caminhoConfiguracao, string portaCom)
         {
             string comando = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"Serial,{portaCom},192008N2,1\" --verify --verify-delay 20";
@@ -154,27 +187,15 @@ namespace Projeto_IJ
         {
             string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
 
-            try
-            {
-                if (!File.Exists(sparklyPath))
-                {
-                    MessageBox.Show("Sparkly.exe não encontrado no caminho informado:\n" + sparklyPath, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                var processo = new System.Diagnostics.Process();
-                processo.StartInfo.FileName = sparklyPath;
-                processo.StartInfo.Arguments = "/C " + comando;
-                processo.StartInfo.UseShellExecute = true;
-                processo.Start();
-
-                MessageBox.Show("Sparkly iniciado com sucesso.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao iniciar o Sparkly:\n" + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            var processo = new Process();
+            processo.StartInfo.FileName = sparklyPath;
+            processo.StartInfo.Arguments = "/C " + comando;
+            processo.StartInfo.UseShellExecute = true;
+            processo.Start();
         }
+
+        // Método exigido pelo Designer
+        private void pack_TextChanged(object sender, EventArgs e) { }
 
         // Métodos vazios para o Designer
         private void label1_Click(object sender, EventArgs e) { }
@@ -188,7 +209,6 @@ namespace Projeto_IJ
         private void textBox1_TextChanged(object sender, EventArgs e) { }
         private void textBox1_TextChanged_1(object sender, EventArgs e) { }
         private void button2_Click(object sender, EventArgs e) { }
-        private void pack_TextChanged(object sender, EventArgs e) { }
     }
 
     public class DadosDoProduto
