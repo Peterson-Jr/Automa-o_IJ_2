@@ -77,6 +77,12 @@ namespace Projeto_IJ
                 e.SuppressKeyPress = true;
                 string codigo = txtCodigoBarras.Text.Trim();
 
+                if (string.IsNullOrWhiteSpace(codigo))
+                {
+                    MessageBox.Show("Por favor, insira um código de barras.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (dadosPorCodigo.TryGetValue(codigo, out var dados))
                 {
                     partnumberBox.Text = dados.Modelo;
@@ -152,17 +158,17 @@ namespace Projeto_IJ
             try
             {
                 if (!File.Exists(sparklyPath))
-                {
                     return false;
+
+                using (var processo = new Process())
+                {
+                    processo.StartInfo.FileName = sparklyPath;
+                    processo.StartInfo.UseShellExecute = true;
+                    processo.Start();
+
+                    // Aguarda um pouco para garantir inicialização
+                    System.Threading.Thread.Sleep(3000);
                 }
-
-                var processo = new Process();
-                processo.StartInfo.FileName = sparklyPath;
-                processo.StartInfo.UseShellExecute = true;
-                processo.Start();
-
-                // Aguarda alguns segundos para garantir inicialização
-                processo.WaitForInputIdle(3000);
                 return true;
             }
             catch
@@ -179,25 +185,38 @@ namespace Projeto_IJ
 
         private void PassarPackParaControlador(string caminhoPack, string portaCom)
         {
-            string comando = $"app download --src \"{caminhoPack}\" --connection Serial,{portaCom},192008N2,1";
-            ExecutarComandoNoControlador(comando);
+            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+
+            // Novo comando completo, conforme solicitado
+            string comando = $"app download --src \"{caminhoPack}\" " +
+                             $"--connection-list Serial,{portaCom},192008N2,1 " +
+                             $"Serial,{portaCom},192008N2,1 Serial,{portaCom},192008N2,1 Serial,{portaCom},192008N2,1 " +
+                             $"--working-directory \"C:\\Users\\peterson.junior\\Desktop\\Gelopar\" --parallel";
+
+            using (var processo = new Process())
+            {
+                processo.StartInfo.FileName = sparklyPath;
+                processo.StartInfo.Arguments = comando;
+                processo.StartInfo.UseShellExecute = true;
+                processo.Start();
+            }
         }
 
         private void ExecutarComandoNoControlador(string comando)
         {
             string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
 
-            var processo = new Process();
-            processo.StartInfo.FileName = sparklyPath;
-            processo.StartInfo.Arguments = "/C " + comando;
-            processo.StartInfo.UseShellExecute = true;
-            processo.Start();
+            using (var processo = new Process())
+            {
+                processo.StartInfo.FileName = sparklyPath;
+                processo.StartInfo.Arguments = "/C " + comando;
+                processo.StartInfo.UseShellExecute = true;
+                processo.Start();
+            }
         }
 
-        // Método exigido pelo Designer
+        // Métodos exigidos pelo Designer
         private void pack_TextChanged(object sender, EventArgs e) { }
-
-        // Métodos vazios para o Designer
         private void label1_Click(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void label3_Click(object sender, EventArgs e) { }
