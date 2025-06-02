@@ -60,14 +60,7 @@ namespace Projeto_IJ
 
         private void PreencherPortasCom()
         {
-            string[] portasCom = SerialPort.GetPortNames();
-            comboBoxPortasCom.Items.Clear();
-
-            foreach (var porta in portasCom)
-                comboBoxPortasCom.Items.Add(porta);
-
-            if (comboBoxPortasCom.Items.Count > 0)
-                comboBoxPortasCom.SelectedIndex = 0;
+            AtualizarPortasCom();
         }
 
         private void txtCodigoBarras_KeyDown(object sender, KeyEventArgs e)
@@ -117,102 +110,390 @@ namespace Projeto_IJ
 
             try
             {
-                if (!ExecutarSparkly())
-                {
-                    MessageBox.Show("Erro ao iniciar o Sparkly. Operação cancelada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
+                // Aplicar configuração primeiro
                 if (File.Exists(dadosSelecionados.CaminhoConfiguracao))
                 {
-                    stconfigBox.Text = $"Arquivo de configuração carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
-                    PassarConfiguracaoParaControlador(dadosSelecionados.CaminhoConfiguracao, portaComSelecionada);
+                    stconfigBox.Text = $"Carregando configuração: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
+
+                    if (PassarConfiguracaoParaControlador(dadosSelecionados.CaminhoConfiguracao, portaComSelecionada))
+                    {
+                        stconfigBox.Text = $"Configuração aplicada com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoConfiguracao)}";
+                    }
+                    else
+                    {
+                        stconfigBox.Text = "Erro ao aplicar configuração.";
+                        MessageBox.Show("Erro ao aplicar configuração. Verifique a conexão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
                 else
                 {
                     stconfigBox.Text = "Arquivo de configuração não encontrado.";
+                    MessageBox.Show("Arquivo de configuração não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+                // Aguardar um pouco antes de aplicar o pack
+                System.Threading.Thread.Sleep(2000);
+
+                // Aplicar pack/atualização
                 if (File.Exists(dadosSelecionados.CaminhoAtualizacao))
                 {
-                    pack.Text = $"Arquivo de atualização carregado com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
-                    PassarPackParaControlador(dadosSelecionados.CaminhoAtualizacao, portaComSelecionada);
+                    pack.Text = $"Carregando atualização: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
+
+                    if (PassarPackParaControlador(dadosSelecionados.CaminhoAtualizacao, portaComSelecionada))
+                    {
+                        pack.Text = $"Atualização aplicada com sucesso: {Path.GetFileName(dadosSelecionados.CaminhoAtualizacao)}";
+                        MessageBox.Show("Gravação concluída com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        pack.Text = "Erro ao aplicar atualização.";
+                        MessageBox.Show("Erro ao aplicar atualização. Verifique a conexão.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     pack.Text = "Arquivo de atualização não encontrado.";
+                    MessageBox.Show("Arquivo de atualização (.pack) não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                MessageBox.Show("Gravação concluída!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro na gravação: " + ex.Message);
+                MessageBox.Show("Erro na gravação: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private bool ExecutarSparkly()
+        private bool PassarConfiguracaoParaControlador(string caminhoConfiguracao, string portaCom)
+        {
+            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+
+            if (!File.Exists(sparklyPath))
+            {
+                MessageBox.Show("Sparkly não encontrado no caminho: " + sparklyPath, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Primeiro, testa a conexão
+            if (!TestarConexaoControlador(portaCom))
+            {
+                MessageBox.Show($"Não foi possível estabelecer conexão com o controlador na porta {portaCom}.\n\nVerifique:\n- Se o cabo está conectado\n- Se a porta COM está correta\n- Se o controlador está ligado", "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Formatos baseados na documentação CAREL e testes comuns
+            string[] formatosConexao = {
+                $"Serial:{portaCom}:19200:8:N:2",  // Formato mais comum
+                $"Serial:{portaCom}:19200:8:N:1",
+                $"Serial,{portaCom},19200,8,N,2", // Formato com vírgula 
+                $"Serial,{portaCom},19200,8,N,1",
+                $"{portaCom}:19200:8:N:2",        // Formato simples
+                $"{portaCom}:19200:8:N:1",
+                $"{portaCom},19200,8,N,2",        // Formato simples com vírgula
+                $"{portaCom},19200,8,N,1",
+                $"Serial;{portaCom};19200;8;N;2", // Formato com ponto e vírgula
+                $"Serial;{portaCom};19200;8;N;1",
+                $"{portaCom}",                    // Apenas a porta
+                $"Serial:{portaCom}",             // Serial + porta
+                $"Serial,{portaCom}"              // Serial + porta com vírgula
+            };
+
+            string ultimoErro = "";
+
+            foreach (string formatoConexao in formatosConexao)
+            {
+                try
+                {
+                    using (var processo = new Process())
+                    {
+                        processo.StartInfo.FileName = sparklyPath;
+                        processo.StartInfo.Arguments = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"{formatoConexao}\" --verify --verify-delay 20";
+                        processo.StartInfo.UseShellExecute = false;
+                        processo.StartInfo.CreateNoWindow = true;
+                        processo.StartInfo.RedirectStandardOutput = true;
+                        processo.StartInfo.RedirectStandardError = true;
+
+                        processo.Start();
+
+                        string output = processo.StandardOutput.ReadToEnd();
+                        string error = processo.StandardError.ReadToEnd();
+
+                        processo.WaitForExit(45000);
+
+                        // Salva o último erro para debug
+                        ultimoErro = $"Formato: {formatoConexao}\nOutput: {output}\nError: {error}\nExitCode: {processo.ExitCode}";
+
+                        if (processo.ExitCode == 0)
+                        {
+                            return true;
+                        }
+
+                        // Se o erro não for de formato de conexão, mostra detalhes
+                        if (!output.Contains("Serial configuration string is invalid") &&
+                            !error.Contains("Serial configuration string is invalid"))
+                        {
+                            // Se não é erro de formato, pode ser outro problema mais sério
+                            if (MessageBox.Show($"Erro encontrado (não relacionado ao formato):\n{ultimoErro}\n\nDeseja continuar tentando outros formatos?",
+                                              "Debug", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ultimoErro = $"Formato: {formatoConexao}\nExceção: {ex.Message}";
+                    continue;
+                }
+            }
+
+            // Mostra detalhes do último erro para debug
+            MessageBox.Show($"Não foi possível encontrar um formato de conexão serial válido.\n\nÚltimo erro:\n{ultimoErro}",
+                          "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        private bool PassarPackParaControlador(string caminhoPack, string portaCom)
+        {
+            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+
+            if (!File.Exists(sparklyPath))
+            {
+                MessageBox.Show("Sparkly não encontrado no caminho: " + sparklyPath, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Formatos baseados na documentação CAREL e testes comuns
+            string[] formatosConexao = {
+                $"Serial:{portaCom}:19200:8:N:2",  // Formato mais comum
+                $"Serial:{portaCom}:19200:8:N:1",
+                $"Serial,{portaCom},19200,8,N,2", // Formato com vírgula 
+                $"Serial,{portaCom},19200,8,N,1",
+                $"{portaCom}:19200:8:N:2",        // Formato simples
+                $"{portaCom}:19200:8:N:1",
+                $"{portaCom},19200,8,N,2",        // Formato simples com vírgula
+                $"{portaCom},19200,8,N,1",
+                $"Serial;{portaCom};19200;8;N;2", // Formato com ponto e vírgula
+                $"Serial;{portaCom};19200;8;N;1",
+                $"{portaCom}",                    // Apenas a porta
+                $"Serial:{portaCom}",             // Serial + porta
+                $"Serial,{portaCom}"              // Serial + porta com vírgula
+            };
+
+            string ultimoErro = "";
+
+            foreach (string formatoConexao in formatosConexao)
+            {
+                try
+                {
+                    using (var processo = new Process())
+                    {
+                        processo.StartInfo.FileName = sparklyPath;
+                        processo.StartInfo.Arguments = $"app download --src \"{caminhoPack}\" --connection \"{formatoConexao}\" --working-directory \"C:\\Users\\peterson.junior\\Desktop\\Gelopar\"";
+                        processo.StartInfo.UseShellExecute = false;
+                        processo.StartInfo.CreateNoWindow = true;
+                        processo.StartInfo.RedirectStandardOutput = true;
+                        processo.StartInfo.RedirectStandardError = true;
+
+                        processo.Start();
+
+                        string output = processo.StandardOutput.ReadToEnd();
+                        string error = processo.StandardError.ReadToEnd();
+
+                        processo.WaitForExit(90000);
+
+                        // Salva o último erro para debug
+                        ultimoErro = $"Formato: {formatoConexao}\nOutput: {output}\nError: {error}\nExitCode: {processo.ExitCode}";
+
+                        if (processo.ExitCode == 0)
+                        {
+                            return true;
+                        }
+
+                        // Se o erro nãofor de formato de conexão, mostra detalhes
+                        if (!output.Contains("Serial configuration string is invalid") &&
+                            !error.Contains("Serial configuration string is invalid"))
+                        {
+                            // Se não é erro de formato, pode ser outro problema mais sério
+                            if (MessageBox.Show($"Erro encontrado (não relacionado ao formato):\n{ultimoErro}\n\nDeseja continuar tentando outros formatos?",
+                                              "Debug", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ultimoErro = $"Formato: {formatoConexao}\nExceção: {ex.Message}";
+                    continue;
+                }
+            }
+
+            // Mostra detalhes do último erro para debug
+            MessageBox.Show($"Não foi possível encontrar um formato de conexão serial válido.\n\nÚltimo erro:\n{ultimoErro}",
+                          "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+
+        private bool TestarConexaoControlador(string portaCom)
+        {
+            try
+            {
+                using (SerialPort serialPort = new SerialPort())
+                {
+                    serialPort.PortName = portaCom;
+                    serialPort.BaudRate = 19200;
+                    serialPort.DataBits = 8;
+                    serialPort.Parity = Parity.None;
+                    serialPort.StopBits = StopBits.Two;
+                    serialPort.Handshake = Handshake.None;
+                    serialPort.ReadTimeout = 3000;
+                    serialPort.WriteTimeout = 3000;
+
+                    serialPort.Open();
+
+                    if (serialPort.IsOpen)
+                    {
+                        // Tenta enviar um comando simples para testar
+                        serialPort.WriteLine("?");
+                        System.Threading.Thread.Sleep(500);
+
+                        serialPort.Close();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log do erro para debug (opcional)
+                System.Diagnostics.Debug.WriteLine($"Erro ao testar conexão: {ex.Message}");
+                return false;
+            }
+
+            return false;
+        }
+
+        private void AtualizarPortasCom()
+        {
+            string portaAtualSelecionada = comboBoxPortasCom.SelectedItem?.ToString();
+
+            string[] portasCom = SerialPort.GetPortNames();
+            comboBoxPortasCom.Items.Clear();
+
+            foreach (var porta in portasCom)
+                comboBoxPortasCom.Items.Add(porta);
+
+            // Tenta manter a porta anteriormente selecionada
+            if (!string.IsNullOrEmpty(portaAtualSelecionada) && comboBoxPortasCom.Items.Contains(portaAtualSelecionada))
+            {
+                comboBoxPortasCom.SelectedItem = portaAtualSelecionada;
+            }
+            else if (comboBoxPortasCom.Items.Count > 0)
+            {
+                comboBoxPortasCom.SelectedIndex = 0;
+            }
+        }
+
+        // Método para verificar o formato correto da conexão no Sparkly
+        private void VerificarFormatoConexaoSparkly()
         {
             string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
 
             try
             {
-                if (!File.Exists(sparklyPath))
-                    return false;
-
                 using (var processo = new Process())
                 {
                     processo.StartInfo.FileName = sparklyPath;
-                    processo.StartInfo.UseShellExecute = true;
+                    processo.StartInfo.Arguments = "configurations apply --help";
+                    processo.StartInfo.UseShellExecute = false;
+                    processo.StartInfo.CreateNoWindow = true;
+                    processo.StartInfo.RedirectStandardOutput = true;
+                    processo.StartInfo.RedirectStandardError = true;
+
                     processo.Start();
+                    string output = processo.StandardOutput.ReadToEnd();
+                    processo.WaitForExit(10000);
 
-                    // Aguarda um pouco para garantir inicialização
-                    System.Threading.Thread.Sleep(3000);
+                    // Mostra a ajuda em uma caixa de mensagem para debug
+                    MessageBox.Show("Ajuda do Sparkly:\n" + output, "Debug - Formato de Conexão");
                 }
-                return true;
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                MessageBox.Show("Erro ao obter ajuda do Sparkly: " + ex.Message);
             }
         }
 
-        private void PassarConfiguracaoParaControlador(string caminhoConfiguracao, string portaCom)
-        {
-            string comando = $"configurations apply --src \"{caminhoConfiguracao}\" --connection \"Serial,{portaCom},192008N2,1\" --verify --verify-delay 20";
-            ExecutarComandoNoControlador(comando);
-        }
-
-        private void PassarPackParaControlador(string caminhoPack, string portaCom)
+        // Método para testar formatos de conexão sem executar comandos
+        private void TestarFormatosConexao(string portaCom)
         {
             string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
 
-            // Novo comando completo, conforme solicitado
-            string comando = $"app download --src \"{caminhoPack}\" " +
-                             $"--connection-list Serial,{portaCom},192008N2,1 " +
-                             $"Serial,{portaCom},192008N2,1 Serial,{portaCom},192008N2,1 Serial,{portaCom},192008N2,1 " +
-                             $"--working-directory \"C:\\Users\\peterson.junior\\Desktop\\Gelopar\" --parallel";
-
-            using (var processo = new Process())
+            if (!File.Exists(sparklyPath))
             {
-                processo.StartInfo.FileName = sparklyPath;
-                processo.StartInfo.Arguments = comando;
-                processo.StartInfo.UseShellExecute = true;
-                processo.Start();
+                MessageBox.Show("Sparkly não encontrado no caminho: " + sparklyPath);
+                return;
             }
-        }
 
-        private void ExecutarComandoNoControlador(string comando)
-        {
-            string sparklyPath = @"C:\Program Files (x86)\CAREL\Sparkly\Sparkly.exe";
+            string[] formatosConexao = {
+                $"Serial:{portaCom}:19200:8:N:2",
+                $"Serial,{portaCom},19200,8,N,2",
+                $"{portaCom}:19200:8:N:2",
+                $"{portaCom}",
+                $"Serial:{portaCom}",
+                $"Serial,{portaCom}"
+            };
 
-            using (var processo = new Process())
+            string resultados = "Teste de formatos de conexão:\n\n";
+
+            foreach (string formato in formatosConexao)
             {
-                processo.StartInfo.FileName = sparklyPath;
-                processo.StartInfo.Arguments = "/C " + comando;
-                processo.StartInfo.UseShellExecute = true;
-                processo.Start();
+                try
+                {
+                    using (var processo = new Process())
+                    {
+                        processo.StartInfo.FileName = sparklyPath;
+                        // Usa um comando simples para testar apenas o formato
+                        processo.StartInfo.Arguments = $"--connection \"{formato}\" --help";
+                        processo.StartInfo.UseShellExecute = false;
+                        processo.StartInfo.CreateNoWindow = true;
+                        processo.StartInfo.RedirectStandardOutput = true;
+                        processo.StartInfo.RedirectStandardError = true;
+
+                        processo.Start();
+                        string output = processo.StandardOutput.ReadToEnd();
+                        string error = processo.StandardError.ReadToEnd();
+                        processo.WaitForExit(5000);
+
+                        resultados += $"Formato: {formato}\n";
+                        resultados += $"ExitCode: {processo.ExitCode}\n";
+
+                        if (output.Contains("Serial configuration string is invalid"))
+                        {
+                            resultados += "Status: INVÁLIDO\n";
+                        }
+                        else if (processo.ExitCode == 0)
+                        {
+                            resultados += "Status: VÁLIDO\n";
+                        }
+                        else
+                        {
+                            resultados += "Status: ERRO\n";
+                        }
+
+                        resultados += $"Output: {output.Substring(0, Math.Min(100, output.Length))}...\n";
+                        resultados += "---\n";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    resultados += $"Formato: {formato}\nErro: {ex.Message}\n---\n";
+                }
             }
+
+            MessageBox.Show(resultados, "Teste de Formatos", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Métodos exigidos pelo Designer
